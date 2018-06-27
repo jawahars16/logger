@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
-import Viewer from "./Viewer";
+import { combineReducers } from 'redux';
+import Viewer from './Viewer';
 
 export default combineReducers({
-  Viewer
+  Viewer,
 });
