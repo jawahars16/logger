@@ -33,7 +33,7 @@ class ViewContainer extends Component {
 
   startStreaming(socket) {
     socket.on("connect", () => {
-      socket.emit("read", this.props.sessions[0].filePath);
+      socket.emit("read", this.props.sessions[this.props.sessions.length - 1].filePath);
     });
     socket.on("line", line => {
       this.appendText(line);
