@@ -16,26 +16,29 @@ class ViewContainer extends Component {
     constructor(props) {
         super(props);
         this.handleSessionCallback = this.handleSessionCallback.bind(this);
-        ipcRenderer.on('open-file', function (file) {
-            alert('open file');
-            console.log('open file');
-            actions.openFile(file);
-        });
-        debugger;
+        this.handleOpenFile = this.handleOpenFile.bind(this);
+    }
+
+    componentDidMount() {
+        ipcRenderer.on('open-file', this.handleOpenFile);
+    }
+
+    handleOpenFile(event, file) {
+        this.props.actions.openFile(file);
     }
 
     handleSessionCallback(session) {
         this.session = session;
         this.socket = io('http://localhost:3001');
-        this.socket.emit('read', this.props.sessions[0].filePath);
         this.startStreaming();
     }
 
     startStreaming() {
         this.socket.on('connect', () => {
-            this.socket.on('line', (line) => {
-                this.appendText(line);
-            });
+            this.socket.emit('read', this.props.sessions[0].filePath);
+        });
+        this.socket.on('line', (line) => {
+            this.appendText(line);
         });
     }
 
@@ -47,7 +50,6 @@ class ViewContainer extends Component {
     }
 
     render() {
-        alert('re-render');
         if (this.props.sessions && this.props.sessions.length > 0) {
             return (
                 <div>
@@ -63,7 +65,6 @@ class ViewContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    alert(JSON.stringify(state));
     return state.Viewer;
 }
 

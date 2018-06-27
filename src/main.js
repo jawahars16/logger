@@ -20,10 +20,10 @@ const template = [
             {
                 label: 'Open log file..', role: 'open', click() {
                     dialog.showOpenDialog(mainWindow, (files) => {
+                        console.log(files[0]);
                         if (files === undefined) {
                             console.log('No files selected !!!');
                         } else {
-                            const { ipcMain } = require('electron');
                             mainWindow.webContents.send('open-file', files[0]);
                         }
                     });
@@ -58,10 +58,7 @@ function onAppReady() {
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
 
-    server.start();
-
-    // const { ipcMain } = require('electron');
-    // mainWindow.webContents.send('open-file', '/Users/babujawaharsuresh/Documents/Projects/Client/logger/package.json');
+    const port = server.start();
 }
 
 app.on('ready', onAppReady);

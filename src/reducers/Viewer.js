@@ -10,7 +10,6 @@ const Viewer = (state = initialState, action = null) => {
             const session = {
                 filePath: action.filePath
             };
-            alert(JSON.stringify(session));
             return {
                 ...state,
                 sessions: [session]

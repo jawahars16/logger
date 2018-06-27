@@ -14,17 +14,16 @@ exports.start = function () {
 
     io = require('socket.io')(http, { wsEngine: 'ws' });
 
-    io.on('connection', function (socket) {
+    io.on('connection', function (client) {
         console.log(`a user connected`);
+        client.on('read', read);
     });
-
-    io.on('read', read);
 
     return port;
 }
 
-
 function read(filePath) {
+    console.log(`read ${filePath}`);
     var readline = require('readline');
     var fs = require('fs');
 
