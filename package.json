@@ -37,6 +37,8 @@
   },
   "dependencies": {
     "CBuffer": "^2.0.0",
+    "ace": "git+https://github.com/ajaxorg/ace.git#master",
+    "antd": "^3.6.4",
     "byline": "^5.0.0",
     "electron-compile": "^6.4.3",
     "electron-squirrel-startup": "^1.0.0",

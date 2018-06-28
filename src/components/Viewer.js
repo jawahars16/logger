@@ -1,31 +1,40 @@
 import React, { Component } from "react";
 import brace from "brace";
-import AceEditor from "react-ace";
+import AceEditor from "./Editor";
+const { ipcRenderer } = window.require("electron");
 
 class Viewer extends Component {
+  constructor(props) {
+    super(props);
+    this.resize = this.resize.bind(this);
+    ipcRenderer.on("resize", this.resize);
+  }
+
   componentDidMount() {
     const session = this.refs.editor.editor.session;
     this.props.sessionCallback(session);
   }
 
+  resize(e, height) {
+    this.refs.editor.editor.resize();
+  }
+
   render() {
     return (
-      <div>
-        <AceEditor
-          name="viewer"
-          readOnly
-          ref="editor"
-          width="100%"
-          height="100%"
-          showPrintMargin="false"
-          style={{ position: "absolute" }}
-          editorProps={
-            {
-              // $blockScrolling: true
-            }
+      <AceEditor
+        name="viewer"
+        readOnly
+        ref="editor"
+        mode="code"
+        width="auto"
+        height="auto"
+        showPrintMargin="false"
+        editorProps={
+          {
+            // $blockScrolling: true
           }
-        />
-      </div>
+        }
+      />
     );
   }
 }

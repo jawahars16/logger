@@ -15,7 +15,7 @@ exports.start = function () {
   io = require('socket.io')(http, { wsEngine: 'ws' });
 
   io.on('connection', (client) => {
-    console.log('a user connected');
+    console.log('client connected');
     client.on('read', read);
   });
 

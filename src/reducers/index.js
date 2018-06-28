@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import Viewer from './Viewer';
+import View from './View';
+import Tab from './Tab';
 
 export default combineReducers({
-  Viewer,
+  View,
+  Tab
 });

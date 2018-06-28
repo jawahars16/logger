@@ -6,3 +6,10 @@ export function openFile(filePath){
         filePath
     }
 }
+
+export function selectTab(filePath){
+    return {
+        type: actions.SELECT_TAB,
+        filePath
+    }
+}
