@@ -8,10 +8,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 class ViewContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     if (this.props.filePath != null) {
       return <Editor filePath={this.props.filePath} />;
