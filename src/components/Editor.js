@@ -69,6 +69,17 @@ class Editor extends React.Component {
       language: "logLanguage"
     });
     this.startStreaming();
+    this.showFind();
+  }
+
+  showFind() {
+    this.editor.getAction("actions.find").run();
+    setTimeout(function () {
+      const toggleButton = document.getElementsByClassName("button toggle left collapse");
+      const replacePart = document.getElementsByClassName("replace-part");
+      toggleButton[0].style.display = replacePart[0].style.display =
+        "none";
+    }, 100);
   }
 
   updateHeight(height) {
