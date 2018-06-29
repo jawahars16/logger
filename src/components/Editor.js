@@ -19,16 +19,13 @@ class Editor extends React.Component {
     this.editor = ace.edit(this.container);
     this.editor.setTheme("ace/theme/clouds");
     this.editor.setShowPrintMargin(false);
-    this.editor.setOptions({
-      fontSize: "10px"
-    });
+    this.editor.container.style.lineHeight = '15px';
     this.updateHeight();
     this.startStreaming();
   }
 
   updateHeight(height) {
-    alert(window.outerHeight);
-    this.editor.setOptions({ maxLines: (window.outerHeight - 66) });
+    this.editor.setOptions({ maxLines: ((window.outerHeight - 85) / 15)});
     this.editor.resize();
   }
 
